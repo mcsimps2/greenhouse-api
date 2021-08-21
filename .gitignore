@@ -1,0 +1,6 @@
+.env
+greenhouse.db*
+venv
+.idea
+.DS_Store
+

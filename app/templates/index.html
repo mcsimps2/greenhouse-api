@@ -1,0 +1,21 @@
+{% block css %}
+    <link href="{{ url_for('static', filename='css/home.css') }}" rel="stylesheet">
+{% endblock %}
+{% block content %}
+    <div class="refresh-container">
+        <a href="{{ url_for('dashboard.index') }}"><button>REFRESH</button></a>
+    </div>
+    {% for greenhouse in greenhouses %}
+        <div class="greenhouse-container">
+            <h1>{{ greenhouse["serial"] }}</h1>
+            <ul>
+                <li><b>Last Reading:</b> {{ greenhouse["created"] }}</li>
+                <li><b>Humidity:</b> {{ "{:.2f}%".format(greenhouse["humidity"]) }}</li>
+                <li><b>Temperature:</b> {{ "{:.2f} F".format(greenhouse["temperature"]) }}</li>
+                <li><b>Fan:</b> {{ "on" if not greenhouse["fan_state"] else "off"}}</li>
+                <li><b>Humidifier:</b> {{ "on" if not greenhouse["humidifier_state"] else "off"}}</li>
+                <li><b>Lights:</b> {{ "on" if not greenhouse["lights_state"] else "off"}}</li>
+            </ul>
+        </div>
+    {% endfor %}
+{% endblock %}
